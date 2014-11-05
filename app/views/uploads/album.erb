@@ -1,0 +1,25 @@
+<% if @album.user.username == session[:username] %>
+	<%= erb :_upload_picture, locals: { id: params[:id] }%>
+<% end %>
+
+
+<body>
+  <div class="container">
+    <div class="carousel_controls">
+      <a href="#" id="previous_frame">&lt;</a>
+      <a href="#" id="next_frame">&gt;</a>
+    </div>
+
+    <div class="carousel">
+      <ul class="frames" style="width:<%= 100.0*@uploads.length %>%">
+        <% @uploads.each do |upload| %>
+					<li style="width:<%= 100.0/@uploads.length %>%">
+						<a href="/albums/<%= params[:id] %>/photos/<%= upload.id %>">
+							<img src="<%= upload.file_name.thumb %>">
+						</a>
+					</li>
+				<% end %>
+      </ul>
+    </div>
+  </div>
+</body>

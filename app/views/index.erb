@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <% if login? %>
+      "Welcome <%= session[:username] %>"
+      <form action="/logout">
+        <input type="submit" value="Logout!">
+      </form>
+      <%= erb :_create_albums %>
+    <% else %>
+      <form action="/login">
+        <input type="submit" value="Login!">
+      </form>
+      <form action="/signup">
+        <input type="submit" value="Sign Up!">
+      </form>
+      <br>
+    <% end %>    
+    <% @albums.each do |album| %>      
+        <p>
+          <a href="/albums/<%= album.id %>"><%= album.name %></a> by  
+          <a href="/users/<%=album.user.id%>"><%= album.user.username %>
+         </a>
+        </p>
+    <% end %>
+  </body>
+</html>

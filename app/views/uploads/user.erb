@@ -1,0 +1,11 @@
+<% if session[:username] == @user.username %>
+  <%= erb :_create_albums %>
+<% end %>
+
+<% @user.albums.each do |album| %>      
+  <p>
+    <a href="/albums/<%= album.id %>"><%= album.name %></a> by  
+    <a href="/users/<%=album.user.id%>"><%= album.user.username %>
+   </a>
+  </p>
+<% end %>
